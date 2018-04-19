@@ -1,0 +1,12 @@
+.registerPanel {
+  display: flex;
+  flex-direction: row;
+}
+.id-input {
+  flex: 7;
+  margin: 1em;
+}
+.copy-button {
+  flex: 3;
+  margin: 1em;
+}

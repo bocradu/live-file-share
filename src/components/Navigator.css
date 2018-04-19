@@ -1,0 +1,13 @@
+.navigator {
+  flex: 1;
+  background: #26a69a;
+}
+.new {
+  width: 5vh;
+}
+.tab-button {
+  height: 100%;
+  font-size: 1em;
+  text-transform: uppercase;
+  border: 1px solid #26a69a;
+}

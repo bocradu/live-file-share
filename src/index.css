@@ -1,0 +1,9 @@
+html,
+body,
+#root,
+[data-reactroot] {
+  height: 600px;
+  width: 800px;
+  display: flex;
+  flex: 1;
+}

@@ -1,0 +1,7 @@
+.collection {
+  flex: 5;
+}
+
+.downloaded {
+  background-color: green !important;
+}

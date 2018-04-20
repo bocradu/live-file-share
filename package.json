@@ -2,15 +2,20 @@
   "name": "live-file-share",
   "version": "1.0.0",
   "description": "file sharing app",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "webpack",
-    "electron": "set SERVER=http://52.143.143.186:5000/ && webpack && electron ."
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "author": "Rallycoding",
   "devDependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
-    "electron": "^1.8.4",
+    "electron-forge": "^5.2.0",
+    "electron-prebuilt-compile": "1.8.4",
     "minimist": "^1.2.0",
     "style-loader": "^0.19.1"
   },
@@ -18,8 +23,9 @@
     "babel-core": "^6.24.0",
     "babel-loader": "^6.4.1",
     "babel-preset-es2015": "^6.24.0",
-    "babel-preset-react": "^6.23.0",
     "babel-preset-stage-1": "^6.22.0",
+    "electron-compile": "^6.4.2",
+    "electron-squirrel-startup": "^1.0.0",
     "fs": "0.0.1-security",
     "lodash": "^4.17.5",
     "react": "^15.4.2",
@@ -34,5 +40,30 @@
     "uuid": "^3.2.1",
     "webpack": "^2.3.2",
     "webpack-dev-server": "^2.11.2"
+  },
+  "config": {
+    "forge": {
+      "make_targets": {
+        "win32": ["squirrel"],
+        "darwin": ["zip"],
+        "linux": ["deb", "rpm"]
+      },
+      "electronPackagerConfig": {
+        "packageManager": "npm"
+      },
+      "electronWinstallerConfig": {
+        "name": "live_file_share"
+      },
+      "electronInstallerDebian": {},
+      "electronInstallerRedhat": {},
+      "github_repository": {
+        "owner": "",
+        "name": ""
+      },
+      "windowsStoreConfig": {
+        "packageName": "",
+        "name": "livefileshare"
+      }
+    }
   }
 }

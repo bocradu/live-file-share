@@ -12,7 +12,7 @@ class MainWindow extends BrowserWindow {
     //this.on("blur", this.hide);
   }
   init() {
-    this.loadURL(`file://${__dirname}/../src/index.html`);
+    this.loadURL(`file://${__dirname}/../Ui/index.html`);
   }
 }
 

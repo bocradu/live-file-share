@@ -22,7 +22,7 @@ const ClientState = (state = INITIAL_STATE, action) => {
     }
     case DISCONNECT: {
       const hostId = action.payload;
-      const clients = state.clients;
+      const clients = { ...state.clients };
       delete clients[hostId];
       return { ...state, clients };
     }

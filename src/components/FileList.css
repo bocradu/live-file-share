@@ -5,3 +5,10 @@
 .downloaded {
   background-color: green !important;
 }
+.collection-item {
+  padding-left: 0px !important;
+}
+.circle {
+  position: relative !important;
+  cursor: pointer !important;
+}

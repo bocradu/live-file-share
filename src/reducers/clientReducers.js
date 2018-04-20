@@ -1,5 +1,5 @@
 import { CONNECTED, DOWNLOAD, DISCONNECT, SELECT_CLIENT } from "../actions";
-
+import _ from "lodash";
 const INITIAL_STATE = {
   clients: {},
   selectedClient: { files: {}, id: "" }
@@ -10,16 +10,15 @@ const ClientState = (state = INITIAL_STATE, action) => {
     case CONNECTED: {
       const { id, files } = action.payload;
       const clients = { ...state.clients, [id]: files };
-      console.log(clients);
       return { ...state, clients };
     }
     case DOWNLOAD: {
       const { id, fileId } = action.payload;
-      state.clients[id][fileId].downloaded = true;
-      state.selectedClient.files[fileId].downloaded = true;
-      const selectedClient = { ...state.selectedClient };
       const clients = { ...state.clients };
-      return { selectedClient, clients };
+      const selectedClient = { ...state.selectedClient };
+      clients[id][fileId].downloaded = true;
+      selectedClient.files[fileId].downloaded = true;
+      return { ...state, clients, selectedClient };
     }
     case DISCONNECT: {
       const hostId = action.payload;

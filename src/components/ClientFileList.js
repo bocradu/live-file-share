@@ -6,11 +6,12 @@ import "./FileList.css";
 class ClientFileListClass extends Component {
   renderFiles() {
     return _.map(this.props.files, (file, fileId) => {
-      const { name, path, downloaded } = file;
+      const { name, downloaded } = file;
+      console.log(downloaded);
       return (
-        <li className="collection-item avatar" key={path}>
+        <li className="collection-item avatar" key={fileId}>
           <i
-            className={`material-icons circle btn-floating ${
+            className={`material-icons circle ${
               downloaded ? "downloaded" : ""
             }`}
             onClick={() =>
@@ -22,13 +23,15 @@ class ClientFileListClass extends Component {
             {downloaded ? "done" : "file_download"}
           </i>
           <i
-            className="material-icons circle btn-floating"
+            style={{ display: downloaded ? "inline" : "none" }}
+            className="material-icons circle"
             onClick={() => this.props.openFile(name)}
           >
             insert_drive_file
           </i>
           <i
-            className="material-icons circle btn-floating"
+            style={{ display: downloaded ? "inline" : "none" }}
+            className="material-icons circle"
             onClick={() => this.props.openFolder()}
           >
             folder_open
@@ -42,7 +45,11 @@ class ClientFileListClass extends Component {
   }
 
   render() {
-    return <ul className="collection video-list video-select-screen">{this.renderFiles()}</ul>;
+    return (
+      <ul className="collection video-list video-select-screen">
+        {this.renderFiles()}
+      </ul>
+    );
   }
 }
 

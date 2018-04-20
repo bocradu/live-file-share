@@ -12,7 +12,7 @@ const HostState = (state = INITIAL_STATE, action) => {
     case REGISTERED:
       return { ...state, hosting: true, id: action.payload };
     case ADD_FILES: {
-      const newFiles = { ...state.files, ...action.payload };
+      const newFiles = { ...action.payload };
       return { ...state, files: newFiles, hasFiles: true };
     }
     case REMOVE_FILE: {

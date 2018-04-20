@@ -1,3 +1,6 @@
 .hostScreen {
   flex: 9;
 }
+.dropzone {
+  cursor: pointer !important;
+}

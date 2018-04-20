@@ -1,7 +1,15 @@
 var io = require("socket.io-client");
 const _ = require("lodash");
-const serverIp = process.env.SERVER || "http://172.18.20.80:5000";
+const serverIp = "http://52.143.143.186:5000/"; //process.env.SERVER || "http://172.18.20.80:5000";
+console.log(serverIp);
 const serverSocket = io(serverIp);
+serverSocket
+  .on("error", function(error) {
+    console.log(error);
+  })
+  .on("connect_error", function(error) {
+    console.log(error);
+  });
 const HostApi = {
   register: id => {
     serverSocket.emit("host:register", id);
@@ -30,7 +38,7 @@ const HostApi = {
     serverSocket.on("host:changed", ({ fileId, file }) => {
       cb({ fileId, file });
     });
-  },
+  }
 };
 
 const ClientApi = {

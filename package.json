@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack",
-    "electron": "webpack && electron ."
+    "electron": "set SERVER=http://52.143.143.186:5000/ && webpack && electron ."
   },
   "author": "Rallycoding",
   "devDependencies": {

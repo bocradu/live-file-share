@@ -9,21 +9,20 @@ class HostFileListClass extends Component {
       const { name, path } = file;
       return (
         <li className="collection-item avatar" key={id}>
-          <div style={{ ...styles.progressBar }} />
           <i
-            className="material-icons circle btn-floating"
+            className="material-icons circle"
             onClick={() => this.props.removeFile(id)}
           >
             clear
           </i>
           <i
-            className="material-icons circle btn-floating"
+            className="material-icons circle"
             onClick={() => this.props.openFile(path)}
           >
             insert_drive_file
           </i>
           <i
-            className="material-icons circle btn-floating"
+            className="material-icons circle"
             onClick={() => this.props.openFolder(path)}
           >
             folder_open
@@ -46,23 +45,6 @@ class HostFileListClass extends Component {
 }
 
 const styles = {
-  progressBar: {
-    transitionProperty: "right",
-    transitionDuration: "0.25s",
-    position: "absolute",
-    zIndex: 0,
-    top: 0,
-    bottom: 0,
-    left: 0,
-    backgroundColor: "#03a9f4",
-    opacity: 0.25
-  },
-  secondaryContent: {
-    zIndex: 1,
-    width: "180px",
-    top: "auto",
-    botton: "auto"
-  },
   fileName: {
     width: "65%"
   }

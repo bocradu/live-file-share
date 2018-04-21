@@ -1,10 +1,24 @@
 import { ipcRenderer } from "electron";
-import { CONNECTED, DOWNLOAD, DISCONNECT, SELECT_CLIENT } from "./types";
+import {
+  CONNECTED,
+  DOWNLOAD,
+  DISCONNECT,
+  SELECT_CLIENT,
+  NAVIGATE,
+  CLIENT_REMOVE_FILE
+} from "./types";
 const ClientActions = {
   connect: hostId => dispatch => {
     ipcRenderer.send("client:connect", hostId);
     ipcRenderer.on("client:connect", (event, { id, files }) => {
       dispatch({ type: CONNECTED, payload: { id, files } });
+      dispatch({ type: NAVIGATE, payload: "client" });
+    });
+    ipcRenderer.on("client:filesUpdate", (event, { id, files }) => {
+      dispatch({ type: CONNECTED, payload: { id, files } });
+    });
+    ipcRenderer.on("client:removeFile", (event, { id, fileId }) => {
+      dispatch({ type: CLIENT_REMOVE_FILE, payload: { id, fileId } });
     });
   },
   download: (hostId, fileId) => dispatch => {
@@ -17,6 +31,7 @@ const ClientActions = {
     ipcRenderer.send("client:disconnect", hostId);
     ipcRenderer.on("client:disconnect", () => {
       dispatch({ type: DISCONNECT, payload: hostId });
+      dispatch({ type: NAVIGATE, payload: "host" });
     });
   },
   selectClient: clientId => {

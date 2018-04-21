@@ -7,7 +7,6 @@ class ClientFileListClass extends Component {
   renderFiles() {
     return _.map(this.props.files, (file, fileId) => {
       const { name, downloaded } = file;
-      console.log(downloaded);
       return (
         <li className="collection-item avatar" key={fileId}>
           <i
@@ -60,8 +59,7 @@ const styles = {
 };
 
 function mapStateToProps(state) {
-  const { files, id } = state.ClientState.selectedClient;
-  return { files, id };
+  return state.ClientState.selectedClient;
 }
 const ClientFileList = connect(mapStateToProps, {
   download: ClientActions.download,

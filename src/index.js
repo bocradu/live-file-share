@@ -97,6 +97,7 @@ ipcMain.on("client:connect", (event, hostId) => {
 ipcMain.on("client:disconnect", (event, hostId) => {
   ClientApi.disconnect({ id: hostId, clientId: id });
   FileApi.closeWatchAll("Client");
+  mainWindow.webContents.send("client:disconnect", id);
 });
 ipcMain.on("client:download", (event, { hostId, fileId }) => {
   ClientApi.download({ id: hostId, clientId: id, fileId });
@@ -134,5 +135,16 @@ ClientApi.onSendFileList(({ id, files }) => {
   Files.Client[id] = files;
   FileApi.checkFiles({ files, type: "Client" });
   FileApi.closeWatchAll("Client");
+  mainWindow.webContents.send("client:filesUpdate", { id, files });
+});
+
+ClientApi.onSubscribed(({ id, files }) => {
+  Files.Client[id] = files;
+  FileApi.checkFiles({ files, type: "Client" });
+  FileApi.closeWatchAll("Client");
   mainWindow.webContents.send("client:connect", { id, files });
+});
+ClientApi.onRemoveFile(({ id, fileId }) => {
+  FileApi.closeWatch({ id: fileId, type: "Client" });
+  mainWindow.webContents.send("client:removeFile", { id, fileId });
 });

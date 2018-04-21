@@ -9,7 +9,7 @@ class ConnectPanelClass extends Component {
   }
   render() {
     const { hostId } = this.state;
-    const { connect } = this.props;
+    const { connect, navigate } = this.props;
     return (
       <div className="registerPanel">
         <div className="input-group id-input">

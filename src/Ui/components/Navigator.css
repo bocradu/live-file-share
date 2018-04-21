@@ -11,3 +11,7 @@
   text-transform: uppercase;
   border: 1px solid #26a69a;
 }
+.navigator-active {
+  outline: none;
+  background-color: #2ab7a9;
+}

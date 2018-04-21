@@ -1,6 +1,7 @@
 var io = require("socket.io-client");
 const _ = require("lodash");
-const serverIp = "http://52.143.143.186:5000/"; //process.env.SERVER || "http://172.18.20.80:5000";
+// const serverIp = "http://52.143.143.186:5000/"; //process.env.SERVER || "http://172.18.20.80:5000";
+const serverIp = process.env.SERVER || "http://172.18.20.80:5000";
 console.log(serverIp);
 const serverSocket = io(serverIp);
 serverSocket
@@ -59,6 +60,11 @@ const ClientApi = {
       cb({ id, files });
     });
   },
+  onSubscribed: cb => {
+    serverSocket.on("client:subscribe", ({ id, files }) => {
+      cb({ id, files });
+    });
+  },
   onDownload: cb => {
     serverSocket.on("client:download", ({ id, fileId, file }) => {
       cb({
@@ -71,6 +77,11 @@ const ClientApi = {
   onRemoteChange: cb => {
     serverSocket.on("client:changed", ({ id, fileId, file }) => {
       cb({ id, fileId, file });
+    });
+  },
+  onRemoveFile: cb => {
+    serverSocket.on("client:removeFile", ({ id, fileId }) => {
+      cb({ id, fileId });
     });
   }
 };

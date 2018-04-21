@@ -10,7 +10,12 @@ class DisconnectPanelClass extends Component {
         <div className="input-group id-input">
           <input type="text" className="form-control" value={id} readOnly />
         </div>
-        <button className="btn copy-button" onClick={() => disconnect(id)}>
+        <button
+          className="btn copy-button"
+          onClick={() => {
+            disconnect(id);
+          }}
+        >
           Disconnect
         </button>
       </div>
@@ -21,7 +26,9 @@ class DisconnectPanelClass extends Component {
 function mapStateToProps(state) {
   return { id: state.ClientState.selectedClient.id };
 }
-const DisconnectPanel = connect(mapStateToProps, {
-  disconnect: ClientActions.disconnect
-})(DisconnectPanelClass);
+const DisconnectPanel = 
+  connect(mapStateToProps, {
+    disconnect: ClientActions.disconnect
+  })(DisconnectPanelClass)
+;
 export { DisconnectPanel };

@@ -39,7 +39,7 @@ let options = {
       "main"
     ]
   },
-  entry: ["./src/index"],
+  entry: ["./src/Ui/index"],
   plugins: [
     new webpack.LoaderOptionsPlugin({
       debug: true

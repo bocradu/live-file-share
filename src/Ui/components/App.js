@@ -4,24 +4,27 @@ import { connect } from "react-redux";
 import { ConnectScreen, HostScreen, ClientScreen } from "../screens";
 import { Navigator } from "./Navigator";
 import "./App.css";
+const Pages = {
+  host: <HostScreen />,
+  client: <ClientScreen />,
+  connect: <ConnectScreen />
+};
 class AppClass extends Component {
   render() {
     return (
       <div>
-        <Router>
-          <div className="app">
-            <Navigator />
-            <Switch>
-              <Route path="/host" component={HostScreen} />
-              <Route path="/client/new" component={ConnectScreen} />
-              <Route path="/client/:id" component={ClientScreen} />
-              <Route path="/" component={HostScreen} />
-            </Switch>
-          </div>
-        </Router>
+        <div className="app">
+          <Navigator />
+          {Pages[this.props.page]}
+        </div>
       </div>
     );
   }
 }
-const App = connect()(AppClass);
+
+function mapStateToProps(state) {
+  return { ...state.RouteState };
+}
+
+const App = connect(mapStateToProps, {})(AppClass);
 export { App };

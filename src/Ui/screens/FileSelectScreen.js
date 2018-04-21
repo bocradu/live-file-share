@@ -1,6 +1,5 @@
 import _ from "lodash";
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import Dropzone from "react-dropzone";
 import uuidv4 from "uuid/v4";
 import { connect } from "react-redux";
@@ -68,5 +67,5 @@ function mapStateToProps(state) {
 }
 const FileSelectScreen = connect(mapStateToProps, {
   addFiles: HostActions.addFiles
-})(withRouter(FileSelectScreenClass));
+})(FileSelectScreenClass);
 export { FileSelectScreen };

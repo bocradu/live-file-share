@@ -60,9 +60,10 @@ class FileSelectScreenClass extends Component {
   }
 }
 function mapStateToProps(state) {
+  const hasFiles = !_.isEmpty(state.HostState.files);
   return {
     hosting: state.HostState.hosting,
-    hasFiles: state.HostState.hasFiles
+    hasFiles
   };
 }
 const FileSelectScreen = connect(mapStateToProps, {

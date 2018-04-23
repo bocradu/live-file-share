@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { ConnectScreen, HostScreen, ClientScreen } from "../screens";
 import { Navigator } from "./Navigator";

@@ -25113,9 +25113,10 @@ var FileSelectScreenClass = function (_Component) {
 }(_react.Component);
 
 function mapStateToProps(state) {
+  var hasFiles = !_lodash2.default.isEmpty(state.HostState.files);
   return {
     hosting: state.HostState.hosting,
-    hasFiles: state.HostState.hasFiles
+    hasFiles: hasFiles
   };
 }
 var FileSelectScreen = (0, _reactRedux.connect)(mapStateToProps, {
@@ -31314,7 +31315,6 @@ var AppClass = function (_Component) {
   _createClass(AppClass, [{
     key: "render",
     value: function render() {
-      console.log(this.props.page);
       return _react2.default.createElement(
         "div",
         null,
@@ -31392,7 +31392,6 @@ var ClientFileListClass = function (_Component) {
         var name = file.name,
             downloaded = file.downloaded;
 
-        console.log(downloaded);
         return _react2.default.createElement(
           "li",
           { className: "collection-item avatar", key: fileId },
@@ -31773,10 +31772,9 @@ var styles = {
 };
 
 function mapStateToProps(state) {
-  var _state$HostState = state.HostState,
-      files = _state$HostState.files,
-      hasFiles = _state$HostState.hasFiles;
+  var files = state.HostState.files;
 
+  var hasFiles = !_lodash2.default.isEmpty(files);
   return { files: files, hasFiles: hasFiles };
 }
 var HostFileList = (0, _reactRedux.connect)(mapStateToProps, {
@@ -31959,7 +31957,6 @@ var ClientState = function ClientState() {
             files: _extends({}, state.selectedClient.files)
           })
         });
-        console.log(newState);
         return newState;
       }
     case _actions.DISCONNECT:
@@ -31999,8 +31996,7 @@ var _actions = __webpack_require__(13);
 var INITIAL_STATE = {
   hosting: false,
   files: {},
-  id: "",
-  hasFiles: false
+  id: ""
 };
 
 var HostState = function HostState() {
@@ -32013,7 +32009,7 @@ var HostState = function HostState() {
     case _actions.ADD_FILES:
       {
         var newFiles = _extends({}, action.payload);
-        return _extends({}, state, { files: newFiles, hasFiles: true });
+        return _extends({}, state, { files: newFiles });
       }
     case _actions.REMOVE_FILE:
       {

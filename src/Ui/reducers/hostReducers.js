@@ -3,8 +3,7 @@ import { REGISTERED, ADD_FILES, REMOVE_FILE, STOP } from "../actions";
 const INITIAL_STATE = {
   hosting: false,
   files: {},
-  id: "",
-  hasFiles: false
+  id: ""
 };
 
 const HostState = (state = INITIAL_STATE, action) => {
@@ -13,7 +12,7 @@ const HostState = (state = INITIAL_STATE, action) => {
       return { ...state, hosting: true, id: action.payload };
     case ADD_FILES: {
       const newFiles = { ...action.payload };
-      return { ...state, files: newFiles, hasFiles: true };
+      return { ...state, files: newFiles };
     }
     case REMOVE_FILE: {
       const files = { ...state.files };

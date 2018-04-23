@@ -51,7 +51,8 @@ const styles = {
 };
 
 function mapStateToProps(state) {
-  const { files, hasFiles } = state.HostState;
+  const { files } = state.HostState;
+  const hasFiles = !_.isEmpty(files);
   return { files, hasFiles };
 }
 const HostFileList = connect(mapStateToProps, {

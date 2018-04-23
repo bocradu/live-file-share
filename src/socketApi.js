@@ -1,7 +1,7 @@
 var io = require("socket.io-client");
 const _ = require("lodash");
-// const serverIp = "http://52.143.143.186:5000/"; //process.env.SERVER || "http://172.18.20.80:5000";
-const serverIp = process.env.SERVER || "http://172.18.20.80:5000";
+const serverIp = "http://52.143.143.186:5000/";
+// const serverIp = process.env.SERVER || "http://172.18.20.80:5000";
 console.log(serverIp);
 const serverSocket = io(serverIp);
 serverSocket
